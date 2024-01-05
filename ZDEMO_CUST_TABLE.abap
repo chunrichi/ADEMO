@@ -47,6 +47,13 @@ SELECTION-SCREEN FUNCTION KEY 1.
 *&----------------------------------------------------------------------
 INITIALIZATION.
 
+  %_p_srch_%_app_%-text = '查询'(t01).
+  %_p_down_%_app_%-text = '下载'(t02).
+  %_p_updw_%_app_%-text = '上载'(t03).
+  %_p_tabl_%_app_%-text = '表名'(t04).
+  %_p_maxl_%_app_%-text = '表行'(t05).
+  %_p_path_%_app_%-text = '文件名'(t06).
+
 *&----------------------------------------------------------------------
 *                     At Selection-Screen Output
 *&----------------------------------------------------------------------
@@ -119,7 +126,7 @@ FORM frm_check_table .
   ENDIF.
 
   IF NOT ( p_tabl+0(1) = 'Z' OR p_tabl+0(1) = 'Y' ).
-    MESSAGE 'Just can change cust table' TYPE 'S' DISPLAY LIKE 'E'.
+    MESSAGE 'Just can change cust table'(004) TYPE 'S' DISPLAY LIKE 'E'.
     STOP.
   ENDIF.
 
@@ -191,7 +198,7 @@ FORM frm_set_fieldcat .
       program_error          = 2
       OTHERS                 = 3.
   IF sy-subrc <> 0.
-    MESSAGE 'Get table fieldcat failed' TYPE 'S' DISPLAY LIKE 'E'.
+    MESSAGE 'Get table fieldcat failed'(005) TYPE 'S' DISPLAY LIKE 'E'.
     STOP.
   ENDIF.
 
@@ -311,7 +318,7 @@ FORM frm_download_template .
 
   CALL METHOD cl_gui_frontend_services=>file_save_dialog
     EXPORTING
-      window_title              = `选择文件夹`
+      window_title              = CONV #( '选择文件夹'(006) )
       default_file_name         = lv_default_file_name
       prompt_on_overwrite       = abap_true
     CHANGING
@@ -488,7 +495,7 @@ FORM frm_upload_data .
       OTHERS                  = 3.
 
   IF sy-subrc <> 0.
-    MESSAGE '文件不存在或已被用户取消' TYPE 'S' DISPLAY LIKE 'E'.
+    MESSAGE '文件不存在或已被用户取消'(007) TYPE 'S' DISPLAY LIKE 'E'.
     STOP.
   ENDIF.
 
