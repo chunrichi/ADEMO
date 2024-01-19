@@ -54,7 +54,7 @@ FORM frm_process .
 
       " Client
       DATA(lo_client) = cl_apc_wsp_client_manager=>create_by_url(
-            i_url           = 'ws:demo.com:8010/sap/bc/apc/sap/zdemo_001'
+            i_url           = 'ws://demo.com:8010/sap/bc/apc/sap/zdemo_001'
             i_event_handler = lo_event_handler ).
 
       " 设置请求头(认证)
